@@ -1,0 +1,84 @@
+@use 'src/app/origin/routes/user/user_variables' as var
+
+@use 'src/app/origin/routes/user/user_class'
+//
+:host
+    display: grid
+    grid-template-columns: min-content min-content 1fr 1fr min-content
+    column-gap: 10px
+
+    height: var.$song_block_height
+    padding: 5px
+    //
+    .serial-number, .title-album
+        display: flex
+
+        align-items: center
+
+    .title-song-album, .title-album
+        @extend %no-wrapping
+    // 
+    .serial-number
+        width: var.$song_block_height / 2
+        justify-content: center
+
+    .img-container
+        $trans_duration: .5s
+        $trans_func: cubic-bezier(0.33, 1, 0.68, 1)
+        //
+        display: flex
+        justify-content: center
+
+        height: inherit 
+
+        &:hover, &.playing
+            cursor: pointer
+            
+            .cover
+                filter: brightness(40%)  
+
+            i
+                opacity: 1 
+        //
+        .cover
+            height: inherit
+
+            border-radius: 10px
+            //transition
+            transition: filter $trans_duration $trans_func
+
+
+        i
+            align-self: center
+
+            position: absolute
+
+            opacity: 0
+            //transition
+            transition: opacity $trans_duration $trans_func
+
+            
+
+    .title-song-album
+        align-self: center
+
+        .song
+            margin-bottom: 5px
+
+        .artist
+            @extend %hover-text
+
+            display: inline
+
+    .options
+        display: flex
+        align-items: center
+
+        i
+            @extend %hover-text
+
+            margin: 0 2.5px
+
+
+
+

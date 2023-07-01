@@ -1,0 +1,25 @@
+:host
+    display: grid
+    grid-template-columns: min-content 1fr
+    column-gap: 15px
+    justify-content: center
+    align-items: center
+    // 
+    overflow: hidden
+    padding: 10px
+    font-size: 1em
+    // 
+    .follow_icons
+        grid-column: 1
+        // 
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        column-gap: 5px
+        // 
+        .item
+            height: 25px
+            width: 25px
+    // 
+    .info
+        grid-column: 2
+        

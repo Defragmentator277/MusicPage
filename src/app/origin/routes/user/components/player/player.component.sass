@@ -1,0 +1,149 @@
+@use '../../../../style_functions' as func
+//
+@use '../../user_class' as user_class
+@use '../../user_variables' as var
+
+.player
+    $padding_offset: 10px
+    $color: func.getColor('first')
+    //
+    display: grid
+    grid-template-columns: min-content 1fr min-content
+    align-items: center
+    column-gap: 20px
+    //
+    height: var.$player_height - $padding_offset
+    padding: $padding_offset 25px
+    
+    background-color: $color
+    //
+    .buttons, .options
+        display: flex
+
+        i
+            @extend %hover-text
+
+            display: block
+
+            margin: 0 10px
+
+            font-size: 1.75em
+    //
+    .buttons
+        
+        .fa-pause
+            padding: 0 2px
+
+    .info
+        justify-self: center
+        //
+        display: grid
+        grid-template-areas: "c s" "c a"
+        column-gap: 10px
+
+        height: inherit
+        width: fit-content
+
+        .song, .artist
+            @extend %no-wrapping
+        //
+        .cover
+            grid-area: c
+
+            height: inherit
+
+            border-radius: 5px
+
+        .song
+            grid-ared: s
+        
+        .artist
+            grid-area: a
+    
+    .options
+
+        .fa-list
+
+            &.active
+                @extend %active-icon
+    // //fixed and absolute elements
+    .strip
+        position: absolute
+        left: 0
+        right: 0
+        bottom: var.$player_height + $padding_offset
+        //
+        height: 3px
+
+        background-color: lighten($color, 5%)
+        overflow: hidden
+        //
+        transition: height ease .25s
+
+        &:hover
+            cursor: pointer
+
+            height: 16px
+
+            .playback
+                border-top-right-radius: 8px
+                border-bottom-right-radius: 8px
+        //
+        .playback
+            display: block
+
+            width: 0
+            height: inherit
+            //
+            background-color: func.getColor('third')
+    
+            border-top-right-radius: 2.5px
+            border-bottom-right-radius: 2.5px
+        
+        .duration
+            display: block
+
+            position: absolute
+            right: 5px
+            bottom: -1px
+
+
+            font-size: 1em
+    //
+    .order-of-songs
+        @extend %hide-scroll
+        //
+        position: fixed
+        left: 0
+        right: 0
+        top: 100%
+        bottom: var.$player_height + $padding_offset
+
+        padding: 0 50px
+        //
+        overflow: hidden
+        overflow-y: scroll
+        //
+        background-color: $color
+
+        transition: top cubic-bezier(0.65, 0, 0.35, 1) .5s
+
+        &.show
+            top: 0
+        //
+        .title
+            margin: 15px 0
+            // padding-bottom: 10px
+
+            font-weight: normal
+        
+        .song-block-container
+            padding-top: 10px
+
+            border-top: 5px solid lighten($color, 15%)
+
+            border-top-left-radius: 25px
+            border-top-right-radius: 25px
+
+    
+

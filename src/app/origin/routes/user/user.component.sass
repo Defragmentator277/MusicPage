@@ -1,0 +1,44 @@
+@use '../../style_functions' as func
+@use '../../style_mixin' as mixins
+//
+@use './user_variables' as var
+@use './user_class'
+
+:host
+    $color: func.getColor('first')
+    @include mixins.font_color($color)
+
+    display: grid
+    grid-template-areas: "header middle" "header footer"
+    grid-template-columns: var.$header_width 1fr
+    grid-template-rows: 1fr var.$footer_height
+
+    height: inherit
+    width: inherit
+
+    .header, .footer
+        background-color: $color
+    // 
+    .header
+        grid-area: header
+        
+    .middle
+        grid-area: middle
+ 
+        background-color: darken(func.getColor('first'), 5%)
+
+    .footer
+        grid-area: footer
+    // //
+    .player
+        position: fixed
+        left: 0
+        right: 0
+        bottom: 0
+        
+
+
+
+    
+
+    

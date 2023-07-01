@@ -1,0 +1,9 @@
+<h1 class="title">ТОП - 100</h1>
+<div class="songs-container">
+    <song-block-comp 
+        *ngFor="let song of songs; let i = index" 
+        [serial_number]="i + 1"
+        [orderOfSongs]="songs"
+        [songInfo]="song"
+        class="song"/>
+</div>

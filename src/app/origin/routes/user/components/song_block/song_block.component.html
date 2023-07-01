@@ -1,0 +1,19 @@
+<p *ngIf="serial_number" class="serial-number">{{serial_number}}</p>
+<div class="img-container" 
+    [ngClass]="{ playing: playing }" 
+    (click)="clickPlayButton()">
+
+    <img [src]="srcCover" class="cover"/>
+    <i *ngIf="!playing" class="fa-solid fa-play"></i>
+    <i *ngIf="playing" class="fa-solid fa-pause"></i>
+</div>
+<div class="title-song-album">
+    <h4 class="song">{{songInfo.album?.song?.title}}</h4>
+    <p [routerLink]="'/user/artist/' + songInfo._id" class="artist">{{songInfo.title}}</p>
+</div>
+<h4 class="title-album">{{songInfo.album?.title}}</h4>
+<div class="options">
+    <i class="fa-regular fa-heart"></i>
+    <i (click)="clickContextMenu($event)" class="fa-solid fa-ellipsis"></i>
+    <context-menu-comp [show]="showContextMenu"></context-menu-comp>
+</div>

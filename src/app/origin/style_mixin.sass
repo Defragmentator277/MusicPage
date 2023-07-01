@@ -1,0 +1,8 @@
+@use 'sass:color'
+// 
+@mixin font_color($color)
+    @if color.blackness($color) > 50% 
+        color: white
+    @else 
+        color: black
+    

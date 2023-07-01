@@ -1,0 +1,32 @@
+<div *ngIf="src !== ''" class="player">
+    <div class="buttons">
+        <i (click)="clickPreviousSong()" class="fa-solid fa-backward"></i>
+        <i *ngIf="!playing" (click)="clickPlayButton()" class="fa-solid fa-play"></i>
+        <i *ngIf="playing" (click)="clickPlayButton()" class="fa-solid fa-pause"></i>
+        <i (click)="clickNextSong()" class="fa-solid fa-forward"></i>
+    </div>
+    <div class="info">
+        <img [src]="srcCover" class="cover"/>
+        <h4 class="song">{{songInfo.album?.song?.title}}</h4>
+        <p class="artist">{{songInfo.title}}</p>
+    </div>
+    <div class="options">
+        <i [ngClass]="{ active: showOrderOfSongs}" (click)="clickOrderOfSongs()" class="fa-solid fa-list"></i>
+        <i class="fa-regular fa-heart"></i>
+    </div>
+    <!--  -->
+    <div (mousedown)="mouseDownOnStrip($event)" (mousemove)="mouseMoveStrip($event)" (mouseup)="mouseUpOnStrip($event)" class="strip">
+        <div [ngStyle]="{ 'width': progress + '%' }" class="playback"></div>
+        <p class="duration">{{duration}}</p>
+    </div>
+    <!--  -->
+    <div [ngClass]="{ show: showOrderOfSongs }" class="order-of-songs">
+        <h1 class="title">Очередь</h1>
+        <div class="song-block-container">
+            <song-block-comp 
+                *ngFor="let song of orderOfSongs; let i = index"
+                [serial_number]="i + 1"
+                [songInfo]="song"/>
+        </div>
+    </div>
+</div>
