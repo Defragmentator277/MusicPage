@@ -14,19 +14,19 @@ import { Variables, Functions } from "src/app/origin/global";
 export class SongBlockComponent implements OnInit, OnDestroy { 
     @Input() orderOfSongs: SongInfo[] = [];
     @Input() serial_number: number = 1
-    // 
+    // //
     _songInfo: SongInfo = new SongInfo()
     @Input() set songInfo(songInfo: SongInfo) {
         this._songInfo = songInfo
         //set src for fast access
-        this.src = Variables.srcArtist + '/' + this.songInfo.src + '/' + this.songInfo.album?.src + '/' + this.songInfo.album?.song?.src
-        this.srcCover = Functions.albumCover('/' + this.songInfo.src + '/' + this.songInfo.album?.src)
+        this.src = Variables.srcArtist + '/' + this.songInfo._id + '/' + this.songInfo.album?.id + '/' + this.songInfo.album?.song?.id
+        this.srcCover = Functions.albumCover('/' + this.songInfo._id + '/' + this.songInfo.album?.id)
     }
     get songInfo() : SongInfo { return this._songInfo }
-    // //set from setter
+    //set from setter
     src: string = ''
-    srcCover: string = ''
-    //
+    srcCover: string = Variables.srcDefaultCoverAlbum
+    // //
     playing: boolean = false
 
     constructor(private playerService: PlayerService) {}

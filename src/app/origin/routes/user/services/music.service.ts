@@ -10,12 +10,17 @@ export class MusicService {
     constructor(private http: HttpClient) {}
 
     postFindSongs(cond: any) {
-        //cond: { type: 'forSongBlock' | 'custom', pipelines: [...] }
+        //cond: { type: 'forSongBlock' | 'custom', match: ..., pipelines: [...] }
         return this.http.post(this.url + '/song/find', cond)
     }
-
-    postFindArtist(cond: any) {
-        //cond: { _id: ... }
+    //
+    postFindArtists(cond: any) {
+        //cond: { match: ..., pipelines: [...] }
         return this.http.post(this.url + '/find', cond)
+    }
+
+    postFindArtistById(cond: any) {
+        //cond: { id: ... }
+        return this.http.post(this.url + '/findById', cond)
     }
 }

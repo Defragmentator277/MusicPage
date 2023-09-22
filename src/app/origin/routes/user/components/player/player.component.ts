@@ -18,8 +18,8 @@ export class PlayerComponent implements OnInit {
     set songInfo(songInfo: SongInfo) {
         this._songInfo = songInfo
 
-        this.src = Variables.srcArtist + '/' + this.songInfo.src + '/' + this.songInfo.album?.src + '/' + this.songInfo.album?.song?.src
-        this.srcCover = Functions.albumCover('/' + this.songInfo.src + '/' + this.songInfo.album?.src)
+        this.src = Variables.srcArtist + '/' + this.songInfo._id + '/' + this.songInfo.album?.id + '/' + this.songInfo.album?.song?.id
+        this.srcCover = Functions.albumCover('/' + this.songInfo._id + '/' + this.songInfo.album?.id)
     }
     get songInfo(): SongInfo { return this._songInfo }
     // //set from setter

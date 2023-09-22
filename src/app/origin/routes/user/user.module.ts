@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
+// //my own
 import { UserRoutingModule } from './user_routing.module'
 //services
 import { LoginService } from './services/login.service'
@@ -17,30 +18,35 @@ import { FooterComponent } from './components/footer/footer.component'
 import { MainComponent } from './components/middle/routes/main/main.component'
 import { Top100Component } from './components/middle/routes/top_100/top_100.component'
 import { YourMusicComponent } from './components/middle/routes/your_music/your_music.component'
+import { ArtistComponent } from './components/middle/routes/artist/artist.component'
 // //common component
 import { SongBlockComponent } from './components/song_block/song_block.component'
+import { AlbumBlockComponent } from './components/album_block/album_block.component'
 import { ContextMenuComponent } from './components/context_menu/context_menu.component'
+import { ExpandContainer } from './components/expand_container/expand_container.component'
 // //
 import { PlayerComponent } from './components/player/player.component'
-
 
 @NgModule({
     imports: [ CommonModule, HttpClientModule, UserRoutingModule ],
     declarations: [ 
         //main component
         UserComponent, 
-
+        //
         HeaderComponent,
         MiddleComponent,
         //routes ^
             MainComponent,
             Top100Component,
             YourMusicComponent,
+            ArtistComponent,
         FooterComponent,
-        //common components
+        //common 
         SongBlockComponent,
+        AlbumBlockComponent,
+        ExpandContainer,
+        //unique 
         ContextMenuComponent,
-        //
         PlayerComponent
     ],
     providers: [ LoginService, MusicService, PlayerService ],

@@ -3,6 +3,29 @@
     <div class="menu">
         <p>ИСПОЛНИТЕЛЬ</p>
         <h1>{{artistInfo.title}}</h1>
-        
+        <p>Подписчики: {{artistInfo.likes}}</p>
     </div>
 </div>
+
+<expand-container-comp 
+    [title]="'Популярные песни'"
+    [(expand)]="expandSongs">
+    <song-block-comp
+        *ngFor="let song of songsOrderPopularity.slice(0, expandSongs ? songsOrderPopularity.length : 6); let i = index"
+        [serial_number]="i + 1"
+        [orderOfSongs]="songsOrderPopularity"
+        [songInfo]="song"/>  
+</expand-container-comp>
+
+<expand-container-comp 
+    [title]="'Релизы'"
+    [(expand)]="expandReleases">
+    <div class="releases">
+        <album-block-comp
+            *ngFor="let album of artistInfo.albums"
+            [artistId]="artistInfo._id"
+            [artistTitle]="artistInfo.title"
+            [albumInfo]="album"
+            class="album"/>
+    </div>
+</expand-container-comp>

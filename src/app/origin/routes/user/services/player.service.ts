@@ -9,7 +9,7 @@ class SongInPlayer {
 
     constructor(songInfo: SongInfo) {
         this.songInfo = songInfo
-        this.src = Variables.srcArtist + '/' + songInfo.src + '/' + songInfo.album?.src + '/' + songInfo.album?.song?.src
+        this.src = Variables.srcArtist + '/' + songInfo._id + '/' + songInfo.album?.id + '/' + songInfo.album?.song?.id
     }
 }
 

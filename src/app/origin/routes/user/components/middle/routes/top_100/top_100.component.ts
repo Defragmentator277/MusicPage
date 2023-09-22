@@ -14,12 +14,17 @@ import { Functions } from "src/app/origin/global"
 
 export class Top100Component implements OnInit {
     songs: SongInfo[] = []
+    expandSongs: boolean = false
 
     constructor(private musicService: MusicService) {}
 
+    expandContainer(show: boolean) {
+        // this.maxComp = show ? this.songs.length : 8
+    }
+
     ngOnInit() {
         this.musicService
-        .postFindSongs({ type: 'forSongBlock', pipelines: [{ $sort: { 'album.song.likes': -1 } }] })
+        .postFindSongs({ type: 'forSongBlock', pipelines: [ { $sort: { 'album.song.likes': -1 } }, { $limit: 100 } ] })
         //Set Songs
         .subscribe(Functions.serverResponse((songs: SongInfo[]) => this.songs = songs))
     }

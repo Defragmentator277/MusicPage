@@ -6,9 +6,6 @@ const router = express.Router();
 
 router.use('/', (req, res, next) => {
     const cond = req.body;
-    //
-    if(!cond.pipelines)
-        cond.pipelines = [];
 
     switch(cond.type)
     {
@@ -26,23 +23,23 @@ router.use('/', (req, res, next) => {
                 { $set: { 'album': '$albums' } }, { $unset: 'albums' },
                 { $set: { 'album.song': '$album.songs' } }, { $unset: 'album.songs' },
 
-                { $set: 
-                    { 'src': { 
-                        $ifNull: [ '$src', { $convert: { input: '$_id', to: 'string' } } ] } 
-                    } 
-                },
-                //
-                { $set: 
-                    { 'album.src': { 
-                        $ifNull: [ '$album.src', { $convert: { input: '$album.id', to: 'string' } } ] } 
-                    } 
-                },
-                //
-                { $set: 
-                    { 'album.song.src': { 
-                        $ifNull: [ '$album.song.src', { $convert: { input: '$album.song.id', to: 'string' } } ] } 
-                    } 
-                }
+                // { $set: 
+                //     { 'src': { 
+                //         $ifNull: [ '$src', { $convert: { input: '$_id', to: 'string' } } ] } 
+                //     } 
+                // },
+                // //
+                // { $set: 
+                //     { 'album.src': { 
+                //         $ifNull: [ '$album.src', { $convert: { input: '$album.id', to: 'string' } } ] } 
+                //     } 
+                // },
+                // //
+                // { $set: 
+                //     { 'album.song.src': { 
+                //         $ifNull: [ '$album.song.src', { $convert: { input: '$album.song.id', to: 'string' } } ] } 
+                //     } 
+                // }
             ].concat(cond.pipelines);
             break;
     }
@@ -54,11 +51,13 @@ router.post('/find', (req, res) => {
     // pipelines: [...] }
     const cond = req.body;
     // 
-    const pipelines = cond.pipelines;
+    const pipelines = cond.pipelines || [];
+    const match = cond.match || {};
 
     Artist.aggregate([
         { $unwind: '$albums' },
         { $unwind: '$albums.songs' },
+        { $match: match }
     ].concat(pipelines))
     .then(
     (songs) => res.json(suppFunc.getAnswer(songs)),     
