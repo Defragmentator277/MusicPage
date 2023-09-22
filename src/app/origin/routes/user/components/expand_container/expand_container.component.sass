@@ -1,0 +1,32 @@
+@use 'src/app/origin/style_functions' as func
+//
+@use 'src/app/origin/routes/user/user_class'
+
+:host
+
+    .header
+        display: grid
+        grid-template-columns: 1fr 1fr
+
+        margin: 10px 0
+            
+        i
+            @extend  %hover-text
+            justify-self: right
+            align-self: center
+
+            width: min-content
+            height: min-content
+
+            transform: rotate(0deg)
+
+            transition: transform .25s 0s linear
+
+            &.show
+                transform: rotate(180deg)
+
+        
+      
+
+
+            

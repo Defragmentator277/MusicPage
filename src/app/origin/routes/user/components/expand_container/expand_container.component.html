@@ -1,0 +1,12 @@
+<div class="header">
+    <h2 class="title">{{title}}</h2>
+    <i 
+        *ngIf="showExtend"
+        [ngClass]="{ show: expand }" 
+        (click)="expandContainer()" 
+        class="fa-solid fa-arrow-down"></i>
+</div>
+<div class="main">
+    <!-- Children \/ component -->
+    <ng-content></ng-content>
+</div>
