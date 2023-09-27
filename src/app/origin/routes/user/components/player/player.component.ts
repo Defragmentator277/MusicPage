@@ -34,6 +34,7 @@ export class PlayerComponent implements OnInit {
     constructor(private playerService: PlayerService) {}
 
     showOrderOfSongs: boolean = false
+
     clickOrderOfSongs() {
         this.showOrderOfSongs = !this.showOrderOfSongs
     }
@@ -65,6 +66,7 @@ export class PlayerComponent implements OnInit {
     }
     //
     private pressOnStrip: boolean = false
+
     mouseDownOnStrip(e: any) {
         this.playerService.pause()
 
@@ -73,18 +75,20 @@ export class PlayerComponent implements OnInit {
 
     mouseMoveStrip(e: any) {
         if(this.pressOnStrip)
-            this.progress = e.clientX / window.innerWidth * 100
+            this.progress = (e.clientX - 5) / window.innerWidth * 100
     }
 
-    mouseUpOnStrip(e: any) {
+    playCurrentPosStrip(e: any) {
         if(this.pressOnStrip)
         {
-            this.playerService.audio.currentTime = e.clientX / window.innerWidth * this.playerService.audio.duration;
+            console.log('out')
+            this.playerService.audio.currentTime = (e.clientX - 5) / window.innerWidth * this.playerService.audio.duration;
             this.playerService.play()
 
             this.pressOnStrip = false
         }
     }
+
     // //
     ngOnInit() {
         //connect with service by property to chainge song information

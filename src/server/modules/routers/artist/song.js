@@ -17,30 +17,11 @@ router.use('/', (req, res, next) => {
                     'year': 0,
                     'likes': 0,
 
-                    'albums.year': 0,
-                }},
-                //Rename albums to album, songs to songs
-                { $set: { 'album': '$albums' } }, { $unset: 'albums' },
-                { $set: { 'album.song': '$album.songs' } }, { $unset: 'album.songs' },
-
-                // { $set: 
-                //     { 'src': { 
-                //         $ifNull: [ '$src', { $convert: { input: '$_id', to: 'string' } } ] } 
-                //     } 
-                // },
-                // //
-                // { $set: 
-                //     { 'album.src': { 
-                //         $ifNull: [ '$album.src', { $convert: { input: '$album.id', to: 'string' } } ] } 
-                //     } 
-                // },
-                // //
-                // { $set: 
-                //     { 'album.song.src': { 
-                //         $ifNull: [ '$album.song.src', { $convert: { input: '$album.song.id', to: 'string' } } ] } 
-                //     } 
-                // }
-            ].concat(cond.pipelines);
+                    'album.year': 0,
+                }}
+                //Rename albums to album, songs to song
+            ]
+            .concat(cond.pipelines);
             break;
     }
 
@@ -52,13 +33,14 @@ router.post('/find', (req, res) => {
     const cond = req.body;
     // 
     const pipelines = cond.pipelines || [];
-    const match = cond.match || {};
 
     Artist.aggregate([
         { $unwind: '$albums' },
-        { $unwind: '$albums.songs' },
-        { $match: match }
-    ].concat(pipelines))
+        { $unwind: '$albums.songs' }
+    ]
+    .concat(suppFunc.renameToSingleAlbumsAndSongs())
+    .concat(pipelines))
+    //
     .then(
     (songs) => res.json(suppFunc.getAnswer(songs)),     
     (err) => res.json(suppFunc.getError(err)));

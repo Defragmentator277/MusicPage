@@ -4,14 +4,16 @@
 @use '../../user_variables' as var
 
 .player
+    @extend %disable_highlighting
+    
     $padding_offset: 10px
     $color: func.getColor('first')
-    //
+    
     display: grid
     grid-template-columns: min-content 1fr min-content
     align-items: center
-    column-gap: 20px
-    //
+    column-gap: 20px 
+
     height: var.$player_height - $padding_offset
     padding: $padding_offset 25px
     

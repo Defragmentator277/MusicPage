@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 //
-import { ArtistModel as SongInfo } from "src/app/origin/models/artist.model"
-import { Variables } from "src/app/origin/global"
+import { ArtistModel, ArtistModel as SongInfo } from "src/app/origin/models/artist.model"
+import { Variables, Functions } from "src/app/origin/global"
 
 class SongInPlayer {
     readonly songInfo: SongInfo = new SongInfo;
@@ -9,7 +9,12 @@ class SongInPlayer {
 
     constructor(songInfo: SongInfo) {
         this.songInfo = songInfo
-        this.src = Variables.srcArtist + '/' + songInfo._id + '/' + songInfo.album?.id + '/' + songInfo.album?.song?.id
+        //CHAINGE TO ID
+        // this.src = Variables.srcArtist 
+        // + '/' + songInfo._id 
+        // + '/' + songInfo.album?.id 
+        // + '/' + songInfo.album?.song?.id
+        this.src = Functions.songSrc(this.songInfo)
     }
 }
 
@@ -67,6 +72,8 @@ export class PlayerService {
             //On loaded audio transfered duration string
             let seconds = Math.floor(this.audio.duration % 60).toString();
             this.compPlayer.duration = Math.floor(this.audio.duration / 60) + ':' + seconds + (seconds.length > 1 ? '' : '0')
+
+
         };
         
         this.refreshCompPlayState(true)

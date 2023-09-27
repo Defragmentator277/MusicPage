@@ -1,0 +1,58 @@
+@use 'src/app/origin/routes/user/user_class'
+
+:host
+
+    .info
+        display: grid
+        grid-template-columns: min-content 1fr
+        gap: 10px
+
+        margin-bottom: 15px
+
+        .album-img
+            height: 200px
+            width: 200px
+
+            border-radius: 25px
+
+            object-fit: cover
+
+        .menu
+            display: grid
+            grid-template-rows: 1fr min-content
+            gap: 10px
+
+            align-self: center
+
+            width: min-content
+            height: min-content
+                
+            
+            .buttons
+                display: flex
+                gap: 5px
+
+                width: min-content
+
+                .play, .favourite
+                    @extend %hover-text
+
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                    padding: 5px 10px
+
+                    border: 1px solid
+                    border-radius: 17px
+
+                .play
+                    gap: 3px
+                
+                .favourite
+                    padding: 5px
+
+                    width: 17px
+
+
+            

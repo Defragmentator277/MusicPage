@@ -11,12 +11,18 @@
         <p class="artist">{{songInfo.title}}</p>
     </div>
     <div class="options">
-        <i [ngClass]="{ active: showOrderOfSongs}" (click)="clickOrderOfSongs()" class="fa-solid fa-list"></i>
-        <i class="fa-regular fa-heart"></i>
+        <i [ngClass]="{ active: showOrderOfSongs }" (click)="clickOrderOfSongs()" class="fa-solid fa-list"></i>
+        <i lass="fa-regular fa-heart"></i>
     </div>
     <!--  -->
-    <div (mousedown)="mouseDownOnStrip($event)" (mousemove)="mouseMoveStrip($event)" (mouseup)="mouseUpOnStrip($event)" class="strip">
-        <div [ngStyle]="{ 'width': progress + '%' }" class="playback"></div>
+    <div class="strip"
+        (mousedown)="mouseDownOnStrip($event)" 
+        (mousemove)="mouseMoveStrip($event)" 
+        (mouseup)="playCurrentPosStrip($event)" 
+        (mouseleave)="playCurrentPosStrip($event)">
+        <div class="playback"
+            [ngStyle]="{ 'width': progress + '%' }">
+        </div>
         <p class="duration">{{duration}}</p>
     </div>
     <!--  -->

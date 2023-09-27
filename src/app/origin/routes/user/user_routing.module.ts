@@ -7,10 +7,10 @@ import { UserComponent } from './user.component';
 import { MainComponent } from "./components/middle/routes/main/main.component";
 import { Top100Component } from "./components/middle/routes/top_100/top_100.component";
 import { YourMusicComponent } from "./components/middle/routes/your_music/your_music.component";
+import { ArtistPageComponent } from './components/middle/routes/artist/artist_page.component';
+import { AlbumPageComponent } from './components/middle/routes/album/album_page.component';
 // // //support
 import { ExpandContainer } from './components/expand_container/expand_container.component';
-//
-import { ArtistComponent } from './components/middle/routes/artist/artist.component';
 
 const routes: Routes = [
     { path: 'user', component: UserComponent, 
@@ -18,7 +18,9 @@ const routes: Routes = [
         { path: 'main', component: MainComponent },
         { path: 'top_100', component: Top100Component },
         { path: 'your_music', component: YourMusicComponent },
-        { path: 'artist/:id', component: ArtistComponent }
+
+        { path: 'artist/:idArtist', component: ArtistPageComponent },
+        { path: 'artist/:idArtist/album/:idAlbum', component: AlbumPageComponent }
     ]},
     // { path: '**', redirectTo: 'user/main' }
 ];

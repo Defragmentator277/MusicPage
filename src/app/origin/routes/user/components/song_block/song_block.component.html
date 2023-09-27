@@ -9,11 +9,19 @@
 </div>
 <div class="title-song-album">
     <h4 class="song">{{songInfo.album?.song?.title}}</h4>
-    <p [routerLink]="'/user/artist/' + songInfo._id" class="artist">{{songInfo.title}}</p>
+    <p class="artist" 
+        [routerLink]="'/user/artist/' + songInfo._id"
+        [ngClass]="{ disable: disableArtistLink }">
+        {{songInfo.title}}
+    </p>
 </div>
-<h4 class="title-album">{{songInfo.album?.title}}</h4>
+<h4 class="title-album"
+    [routerLink]="'/user/artist/' + songInfo._id + '/album/' + songInfo.album?.id"
+    [ngClass]="{ disable: disableAlbumLink }">
+    {{songInfo.album?.title}}
+</h4>
 <div class="options">
     <i class="fa-regular fa-heart"></i>
-    <i (click)="clickContextMenu($event)" class="fa-solid fa-ellipsis"></i>
+    <i class="fa-solid fa-ellipsis"></i>
     <context-menu-comp [show]="showContextMenu"></context-menu-comp>
 </div>

@@ -1,9 +1,12 @@
 <div class="info">
-    <img [src]="srcCover" class="artist-img"/>
+    <img class="artist-img" 
+        [src]="srcCover"/>
     <div class="menu">
-        <p>ИСПОЛНИТЕЛЬ</p>
-        <h1>{{artistInfo.title}}</h1>
-        <p>Подписчики: {{artistInfo.likes}}</p>
+        <div class="title">
+            <p>ИСПОЛНИТЕЛЬ</p>
+            <h1>{{artistInfo.title}}</h1>
+            <p>Подписчики: {{artistInfo.likes}}</p>
+        </div>
     </div>
 </div>
 
@@ -12,6 +15,7 @@
     [(expand)]="expandSongs">
     <song-block-comp
         *ngFor="let song of songsOrderPopularity.slice(0, expandSongs ? songsOrderPopularity.length : 6); let i = index"
+        [disableArtistLink]="true"
         [serial_number]="i + 1"
         [orderOfSongs]="songsOrderPopularity"
         [songInfo]="song"/>  

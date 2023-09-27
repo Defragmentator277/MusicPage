@@ -3,12 +3,15 @@
 @use 'src/app/origin/routes/user/user_class'
 
 :host
+    @extend %disable_highlighting
+
     display: grid
     grid-template-columns: min-content min-content 1fr 1fr min-content
     column-gap: 10px
 
     height: var.$song_block_height
     padding: 5px
+
     //
     .serial-number, .title-album
         display: flex
@@ -69,6 +72,15 @@
             @extend %hover-text
 
             display: inline
+
+            &.disable
+                pointer-events: none
+
+    .title-album
+        @extend %hover-text
+
+        &.disable
+            pointer-events: none
 
     .options
         display: flex

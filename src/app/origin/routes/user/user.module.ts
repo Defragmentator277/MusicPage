@@ -18,7 +18,8 @@ import { FooterComponent } from './components/footer/footer.component'
 import { MainComponent } from './components/middle/routes/main/main.component'
 import { Top100Component } from './components/middle/routes/top_100/top_100.component'
 import { YourMusicComponent } from './components/middle/routes/your_music/your_music.component'
-import { ArtistComponent } from './components/middle/routes/artist/artist.component'
+import { ArtistPageComponent } from './components/middle/routes/artist/artist_page.component'
+import { AlbumPageComponent } from './components/middle/routes/album/album_page.component'
 // //common component
 import { SongBlockComponent } from './components/song_block/song_block.component'
 import { AlbumBlockComponent } from './components/album_block/album_block.component'
@@ -39,7 +40,8 @@ import { PlayerComponent } from './components/player/player.component'
             MainComponent,
             Top100Component,
             YourMusicComponent,
-            ArtistComponent,
+            ArtistPageComponent,
+            AlbumPageComponent,
         FooterComponent,
         //common 
         SongBlockComponent,
