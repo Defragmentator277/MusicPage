@@ -29,29 +29,7 @@ router.post('/findById', (req, res) => {
     const id = cond.idArtist
 
     Artist.aggregate([
-        { $match: { _id: new mongoose.Types.ObjectId(id) } },
-
-        // { $unwind: '$albums' },
-        // { $unwind: '$albums.songs' },
-        // { $set: 
-        //     { 'src': { 
-        //         $ifNull: [ '$src', { $convert: { input: '$_id', to: 'string' } } ] } 
-        //     } 
-        // },
-        // //
-        // { $set: 
-        //     { 'albums.src': { 
-        //         $ifNull: [ '$albums.src', { $convert: { input: '$albums.id', to: 'string' } } ] } 
-        //     } 
-        // },
-        // //
-        // { $set: 
-        //     { 'albums.songs.src': { 
-        //         $ifNull: [ '$albums.songs.src', { $convert: { input: '$albums.songs.id', to: 'string' } } ] } 
-        //     } 
-        // },
-        // { $group: { _id: "$_id" }}
-        // { $unset: 'albums' }
+        { $match: { _id: new mongoose.Types.ObjectId(id) } }
     ])
     .then(
     (artists) => res.json(suppFunc.getAnswer(artists[0], artists.length == 1)),

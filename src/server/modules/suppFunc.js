@@ -1,6 +1,8 @@
 module.exports = class suppFunc
 {
     static getAnswer(ans, ifSuccess = true) {
+        console.log(ans);
+
         return {
             status: ifSuccess ? 'success' : 'failed',
             answer: ans,
@@ -14,7 +16,7 @@ module.exports = class suppFunc
         return {
             status: 'error',
             answer: err
-        }
+        };
     }
     
     static renameToSingleAlbumsAndSongs(albums_rename = true, songs_rename = true) {

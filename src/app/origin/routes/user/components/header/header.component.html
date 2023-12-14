@@ -2,13 +2,34 @@
     Музыка
 </div>
 <ul class="menu">
-    <li [routerLink]="'/user/main'" class="item">
+    <li class="item"
+        [routerLink]="'/user/main'">
         Главная
     </li>
-    <li [routerLink]="'/user/top_100'" class="item">
+    <li class="item"
+        [routerLink]="'/user/top_100'">
         Топ 100
     </li>
-    <li [routerLink]="'/user/your_music'" class="item">
+    <li class="item"
+        [routerLink]="'/user/your_music/user_songs'"
+        *ngIf="user">
         Ваша музыка
+    </li>
+    <!--  -->
+    <li class="item"
+        *ngIf="!user"
+        [routerLink]="'/user/enter'">
+        Войти
+    </li>
+    <li class="item"
+        *ngIf="!user" 
+        [routerLink]="'/user/sign_up'">
+        Зарегистрироваться
+    </li>
+    
+    <li class="item"
+        *ngIf="user" 
+        (click)="clickExit()">
+        Выйти
     </li>
 </ul>

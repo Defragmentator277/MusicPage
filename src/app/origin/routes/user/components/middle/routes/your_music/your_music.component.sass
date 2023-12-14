@@ -1,0 +1,25 @@
+@use 'src/app/origin/routes/user/user_class'
+
+@use 'src/app/origin/style_functions.sass' as func
+
+:host
+
+    .header
+        display: flex
+        gap: 15px
+
+        .item
+            width: min-content    
+
+            padding: 10px 15px
+
+            border: 1px solid transparent
+            border-radius: 25px
+
+            &:hover
+                cursor: pointer
+
+                border: 1px solid func.getColor('second')
+
+
+

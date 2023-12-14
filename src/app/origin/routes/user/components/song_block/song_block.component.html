@@ -21,7 +21,15 @@
     {{songInfo.album?.title}}
 </h4>
 <div class="options">
-    <i class="fa-regular fa-heart"></i>
+    <i class="fa-regular fa-heart"
+        *ngIf="!songAdd"
+        (click)="clickAddSong()">
+    </i>
+    <i class="fa-solid fa-heart"
+        *ngIf="songAdd"
+        (click)="clickDelSong()">
+    </i>
+
     <i class="fa-solid fa-ellipsis"></i>
     <context-menu-comp [show]="showContextMenu"></context-menu-comp>
 </div>

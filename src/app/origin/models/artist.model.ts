@@ -18,8 +18,8 @@ export class AlbumModel {
 }
 
 export class ArtistModel {
-    _id?: string    
-    title?: string 
+    _id: string | undefined
+    title: string | undefined
     likes?: number 
     description?: string
     year?: number

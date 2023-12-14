@@ -6,6 +6,7 @@ import { ArtistModel, ArtistModel as SongInfo } from "src/app/origin/models/arti
 import { MusicService } from "../../../../services/music.service"
 // 
 import { Functions, Variables } from "src/app/origin/global"
+import { switchMap } from "rxjs"
 
 @Component({
     selector: 'artist-comp',
@@ -35,13 +36,15 @@ export class ArtistPageComponent implements OnInit {
     expandSongs: boolean = false
     expandReleases: boolean = false
 
-    constructor(private route: ActivatedRoute, private musicService: MusicService) { }
+    constructor(private activatedRoute: ActivatedRoute, private musicService: MusicService) { }
 
     //
     ngOnInit() {
-        const id = this.route.snapshot.params['idArtist']
-
-        this.musicService.postFindArtistById({ idArtist: id })
+        //it`s needed for refreshering page, even if it`s same url (but different params)
+        this.activatedRoute.paramMap
+        .pipe(switchMap(params => 
+            this.musicService.postFindArtistById({ idArtist: params.get('idArtist') })
+        ))
         .subscribe(Functions.serverResponse((artist: ArtistModel) => this.artistInfo = artist))
     }
 }

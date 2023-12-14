@@ -1,1 +1,16 @@
-<h1>This is Your music component</h1>
+<div class="header">
+    <div class="item" 
+    [routerLink]="'user_songs'">
+        <h2>Любимое</h2>
+    </div>
+    <div class="item">
+        <h2>Альбомы</h2>
+    </div>
+    <div class="item">
+        <h2>Артисты</h2>
+    </div>
+</div>
+<!--  -->
+<div class="main">
+    <router-outlet></router-outlet>
+</div>

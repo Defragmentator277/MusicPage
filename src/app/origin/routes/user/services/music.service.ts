@@ -9,22 +9,22 @@ export class MusicService {
 
     constructor(private http: HttpClient) {}
 
-    postFindSongs(cond: any) {
+    postFindSongs(cond: { type: 'forSongBlock' | 'custom', pipelines?: any[] }) {
         //cond: { type: 'forSongBlock' | 'custom', pipelines: [...] }
         return this.http.post(this.url + '/song/find', cond)
     }
     //
-    postFindAlbumById(cond: any) {
+    postFindAlbumById(cond: { idArtist: string | null, idAlbum: string | null, type?: 'forAlbumPage' | 'custom' }) {
         //cond: { idArtist: ..., idAlbum: ..., type: 'forAlbumPage' | 'custom' }
         return this.http.post(this.url + '/album/findById', cond);
     }
     //
-    postFindArtists(cond: any) {
+    postFindArtists(cond: { pipelines?: any[] }) {
         //cond: { pipelines: [...] }
         return this.http.post(this.url + '/find', cond)
     }
 
-    postFindArtistById(cond: any) {
+    postFindArtistById(cond: { idArtist: string | null }) {
         //cond: { idArtist: ... }
         return this.http.post(this.url + '/findById', cond)
     }

@@ -9,7 +9,7 @@
         </div>
         
         <div class="buttons">
-            <div class="play">
+            <div class="play" (click)="clickPlayAlbum()">
                 <i class="fa-solid fa-play"></i>
                 <p class="text">Слушать</p>
             </div>
@@ -22,9 +22,9 @@
 
 <div class="songs">
     <song-block-comp
-        *ngFor="let song of songsOrder; let i = index"
+        *ngFor="let song of orderOfSongs; let i = index"
         [disableAlbumLink]="true"
         [serial_number]="i + 1"
-        [orderOfSongs]="songsOrder"
+        [orderOfSongs]="orderOfSongs"
         [songInfo]="song"/>
 </div>

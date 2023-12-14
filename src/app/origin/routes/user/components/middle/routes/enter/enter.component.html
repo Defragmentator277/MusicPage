@@ -1,0 +1,17 @@
+<h1 class="title">Вход</h1>
+
+<div class="form">
+    <div class="name">
+        <h3 class="title">Имя</h3>
+        <input type="text"
+        [(ngModel)]="name"/>
+    </div>
+    <div class="password">
+        <h3 class="title">Пароль</h3>
+        <input type="text"
+        [(ngModel)]="password"/>
+    </div>
+    <input class="validate" type="button" value="Войти"
+        (click)="clickSubmit()"
+        (keypress.enter)="clickSubmit()"/>
+</div>
